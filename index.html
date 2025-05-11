@@ -18,12 +18,6 @@
       border-bottom: 2px solid #3498db;
       padding-bottom: 0.3em;
     }
-    .steps-container {
-      margin-top: 120px;
-      display: flex;
-      flex-direction: column;
-      gap: 2em;
-    }
     .step {
       margin-bottom: 2em;
     }
@@ -73,49 +67,47 @@
       padding: 10px;
       border-radius: 5px;
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      max-width: 300px;
     }
   </style>
 </head>
 <body>
   <h1>Google Meet 自动加入使用指南</h1>
 
-  <!-- 固定复制链接按钮 -->
+  <!-- 固定复制链接与打开链接按钮 -->
   <div class="fixed-copy-box">
     <h2>第一步：点复制链接按钮</h2>
-    <p>点击下方按钮即可复制 Google Meet 会议链接：</p>
+    <p>点击下方按钮即可复制或打开 Google Meet 会议链接：</p>
     <div class="copy-box">
       <span class="copy-text" id="meetLink">正在加载...</span>
-      <button class="copy-button" onclick="copyMeetLink()">复制链接</button>
+      <button class="copy-button" onclick="copyMeetLink()">复制</button>
+      <button class="copy-button" onclick="openMeetLink()">打开</button>
     </div>
   </div>
 
-  <div class="steps-container">
-    <div class="step">
-      <h2>第二步：打开无痕浏览器</h2>
-      <p>按截图操作，点击右上角菜单，选择“打开新的无痕式窗口”：</p>
-      <img src="static/step2.png" class="screenshot" alt="打开无痕窗口截图"/>
-      <p><strong>快捷键方式：</strong></p>
-      <ul>
-        <li>Windows：<code>Ctrl + Shift + N</code></li>
-        <li>Mac：<code>⌘ + Shift + N</code></li>
-      </ul>
-    </div>
+  <div class="step">
+    <h2>第二步：打开无痕浏览器</h2>
+    <p>按截图操作，点击右上角菜单，选择“打开新的无痕式窗口”：</p>
+    <img src="static/step2.png" class="screenshot" alt="打开无痕窗口截图"/>
+    <p><strong>快捷键方式：</strong></p>
+    <ul>
+      <li>Windows：<code>Ctrl + Shift + N</code></li>
+      <li>Mac：<code>⌘ + Shift + N</code></li>
+    </ul>
+  </div>
 
-    <div class="step">
-      <h2>第三步：按截图操作</h2>
-      <img src="static/step3.png" class="screenshot" alt="申请加入按钮截图"/>
-    </div>
+  <div class="step">
+    <h2>第三步：按截图操作</h2>
+    <img src="static/step3.png" class="screenshot" alt="申请加入按钮截图"/>
+  </div>
 
-    <div class="step">
-      <h2>第四步：按截图操作</h2>
-      <img src="static/step4.png" class="screenshot" alt="后续操作截图"/>
-    </div>
+  <div class="step">
+    <h2>第四步：按截图操作</h2>
+    <img src="static/step4.png" class="screenshot" alt="第四步截图"/>
+  </div>
 
-    <div class="step">
-      <h2>第五步：按截图操作</h2>
-      <img src="static/step5.png" class="screenshot" alt="后续步骤截图"/>
-    </div>
+  <div class="step">
+    <h2>第五步：按截图操作</h2>
+    <img src="static/step5.png" class="screenshot" alt="第五步截图"/>
   </div>
 
   <script>
@@ -133,12 +125,21 @@
 
     const path = window.location.pathname.split("/")[1];
     const meetLink = links[path] || "链接不存在，请检查地址路径";
+
     document.getElementById("meetLink").textContent = meetLink;
 
     function copyMeetLink() {
       navigator.clipboard.writeText(meetLink).then(() => {
         alert("已复制链接到剪贴板！");
       });
+    }
+
+    function openMeetLink() {
+      if (meetLink.startsWith("http")) {
+        window.open(meetLink, "_blank");
+      } else {
+        alert("无效链接，无法打开。");
+      }
     }
   </script>
 </body>
