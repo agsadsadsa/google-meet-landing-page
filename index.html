@@ -6,67 +6,105 @@
   <title>Google Meet 使用说明</title>
   <style>
     body {
-      font-family: "Microsoft YaHei", sans-serif;
-      background-color: #f7f9fa;
+      font-family: "Segoe UI", "Microsoft YaHei", sans-serif;
+      background-color: #f0f2f5;
       padding: 2em;
-      max-width: 1000px;
-      margin: auto;
+      margin: 0 auto;
+      max-width: 960px;
       line-height: 1.6;
+      color: #333;
     }
+
     h1 {
       color: #2c3e50;
-      border-bottom: 2px solid #3498db;
-      padding-bottom: 0.3em;
+      font-size: 2em;
+      text-align: center;
+      margin-bottom: 1.5em;
     }
-    .step {
-      margin-bottom: 2em;
-    }
-    .step h2 {
-      color: #2980b9;
-    }
-    .important {
-      background-color: #fff3cd;
-      padding: 1em;
-      border-left: 5px solid #ffcc00;
-      margin-top: 1em;
-    }
-    img.screenshot {
-      display: block;
-      max-width: 100%;
-      border: 1px solid #ccc;
-      margin-top: 1em;
-    }
-    .copy-box {
+
+    .step-card {
       background-color: #fff;
-      border: 1px solid #ccc;
-      padding: 0.5em;
-      display: flex;
-      align-items: center;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+      padding: 1.5em;
+      margin-bottom: 2em;
+      transition: transform 0.3s ease;
+    }
+
+    .step-card:hover {
+      transform: translateY(-2px);
+    }
+
+    .step-card h2 {
+      color: #007acc;
+      font-size: 1.4em;
+      margin-bottom: 0.5em;
+    }
+
+    img.screenshot {
+      width: 100%;
       margin-top: 1em;
+      border-radius: 8px;
+      border: 1px solid #ddd;
     }
-    .copy-text {
-      flex: 1;
-      font-family: monospace;
-      overflow-x: auto;
-    }
-    .copy-button {
-      margin-left: 1em;
-      padding: 0.4em 1em;
-      cursor: pointer;
-      background-color: #3498db;
-      color: white;
-      border: none;
-      border-radius: 4px;
-    }
+
     .fixed-copy-box {
       position: fixed;
       top: 20px;
-      right: 0;
+      right: 20px;
+      background-color: #ffffff;
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      padding: 1em;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
       z-index: 1000;
-      background-color: #fff;
-      padding: 10px;
-      border-radius: 5px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      width: 280px;
+    }
+
+    .fixed-copy-box h2 {
+      font-size: 1.1em;
+      margin-bottom: 0.5em;
+    }
+
+    .copy-box {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5em;
+    }
+
+    .copy-text {
+      background: #f9f9f9;
+      padding: 0.5em;
+      border-radius: 6px;
+      font-family: monospace;
+      font-size: 0.9em;
+      overflow-x: auto;
+      word-break: break-all;
+    }
+
+    .copy-buttons {
+      display: flex;
+      gap: 0.5em;
+    }
+
+    .copy-button {
+      flex: 1;
+      background-color: #007acc;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      padding: 0.5em 0.8em;
+      font-size: 0.9em;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .copy-button:hover {
+      background-color: #005fa3;
+    }
+
+    ul {
+      padding-left: 1.2em;
     }
   </style>
 </head>
@@ -76,18 +114,21 @@
   <!-- 固定复制链接与打开链接按钮 -->
   <div class="fixed-copy-box">
     <h2>第一步：点复制链接按钮</h2>
-    <p>点击下方按钮即可复制或打开 Google Meet 会议链接：</p>
+    <p>点击下方按钮复制或打开会议链接：</p>
     <div class="copy-box">
-      <span class="copy-text" id="meetLink">正在加载...</span>
-      <button class="copy-button" onclick="copyMeetLink()">复制</button>
-      <button class="copy-button" onclick="openMeetLink()">打开</button>
+      <div class="copy-text" id="meetLink">正在加载...</div>
+      <div class="copy-buttons">
+        <button class="copy-button" onclick="copyMeetLink()">复制</button>
+        <button class="copy-button" onclick="openMeetLink()">打开</button>
+      </div>
     </div>
   </div>
 
-  <div class="step">
+  <!-- 第二步 -->
+  <div class="step-card">
     <h2>第二步：打开无痕浏览器</h2>
     <p>按截图操作，点击右上角菜单，选择“打开新的无痕式窗口”：</p>
-    <img src="static/step2.png" class="screenshot" alt="打开无痕窗口截图"/>
+    <img src="static/step2.png" class="screenshot" alt="无痕窗口"/>
     <p><strong>快捷键方式：</strong></p>
     <ul>
       <li>Windows：<code>Ctrl + Shift + N</code></li>
@@ -95,19 +136,22 @@
     </ul>
   </div>
 
-  <div class="step">
+  <!-- 第三步 -->
+  <div class="step-card">
     <h2>第三步：按截图操作</h2>
-    <img src="static/step3.png" class="screenshot" alt="申请加入按钮截图"/>
+    <img src="static/step3.png" class="screenshot" alt="步骤3截图"/>
   </div>
 
-  <div class="step">
+  <!-- 第四步 -->
+  <div class="step-card">
     <h2>第四步：按截图操作</h2>
-    <img src="static/step4.png" class="screenshot" alt="第四步截图"/>
+    <img src="static/step4.png" class="screenshot" alt="步骤4截图"/>
   </div>
 
-  <div class="step">
+  <!-- 第五步 -->
+  <div class="step-card">
     <h2>第五步：按截图操作</h2>
-    <img src="static/step5.png" class="screenshot" alt="第五步截图"/>
+    <img src="static/step5.png" class="screenshot" alt="步骤5截图"/>
   </div>
 
   <script>
