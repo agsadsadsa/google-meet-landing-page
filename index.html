@@ -21,17 +21,13 @@
     .steps-container {
       margin-top: 120px;
       display: flex;
-      flex-wrap: wrap;
+      flex-direction: column;
       gap: 2em;
     }
     .step {
-      flex: 1 1 100%;
       margin-bottom: 2em;
     }
-    .half-step {
-      flex: 1 1 48%;
-    }
-    .step h2, .half-step h2 {
+    .step h2 {
       color: #2980b9;
     }
     .important {
@@ -77,6 +73,7 @@
       padding: 10px;
       border-radius: 5px;
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      max-width: 300px;
     }
   </style>
 </head>
@@ -105,19 +102,17 @@
       </ul>
     </div>
 
-    <div class="half-step">
+    <div class="step">
       <h2>第三步：按截图操作</h2>
       <img src="static/step3.png" class="screenshot" alt="申请加入按钮截图"/>
     </div>
-  </div>
 
-  <div class="steps-container">
-    <div class="half-step">
+    <div class="step">
       <h2>第四步：按截图操作</h2>
       <img src="static/step4.png" class="screenshot" alt="后续操作截图"/>
     </div>
 
-    <div class="half-step">
+    <div class="step">
       <h2>第五步：按截图操作</h2>
       <img src="static/step5.png" class="screenshot" alt="后续步骤截图"/>
     </div>
@@ -138,7 +133,6 @@
 
     const path = window.location.pathname.split("/")[1];
     const meetLink = links[path] || "链接不存在，请检查地址路径";
-
     document.getElementById("meetLink").textContent = meetLink;
 
     function copyMeetLink() {
