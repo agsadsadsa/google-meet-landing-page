@@ -119,7 +119,7 @@
       <div class="copy-text" id="meetLink">正在加载...</div>
       <div class="copy-buttons">
         <button class="copy-button" onclick="copyMeetLink()">复制</button>
-        <button class="copy-button" onclick="openMeetLink()">打开</button>
+        <button class="copy-button" id="openButton" onclick="openMeetLink()">打开</button>
       </div>
     </div>
   </div>
@@ -155,6 +155,7 @@
   </div>
 
   <script>
+    // 会议链接字典
     const links = {
       "1": "https://meet.google.com/rty-xerj-gno",
       "2": "https://meet.google.com/xzw-szuu-cfq",
@@ -185,6 +186,19 @@
         alert("无效链接，无法打开。");
       }
     }
+
+    // 检查是否为手机设备
+    function isMobileDevice() {
+      return /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+    }
+
+    // 页面加载完成后隐藏打开按钮（仅电脑）
+    window.addEventListener("DOMContentLoaded", () => {
+      const openButton = document.getElementById("openButton");
+      if (!isMobileDevice() && openButton) {
+        openButton.style.display = "none";
+      }
+    });
   </script>
 </body>
 </html>
